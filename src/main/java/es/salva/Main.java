@@ -11,6 +11,9 @@ public class Main {
                 LocalDate.of(2026, 10, 30));
         System.out.println(padrino.getTitulo());
         System.out.println("Duración: " + padrino.getDuracion() +" min.");
+
+        XmlPeliculas xmlPeliculas = new XmlPeliculas();
+        xmlPeliculas.leerPeliculas("peliculas.xml");
     }
 
 
