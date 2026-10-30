@@ -63,4 +63,44 @@ public class Pelicula {
         this.estado = estado;
         this.fechaAdquisicion = fechaAdquisicion;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public String getSinopsis() {
+        return sinopsis;
+    }
+
+    public String getFormato() {
+        return formato;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public LocalDate getFechaAdquisicion() {
+        return fechaAdquisicion;
+    }
 }
