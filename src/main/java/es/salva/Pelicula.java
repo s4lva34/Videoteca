@@ -52,16 +52,8 @@ public class Pelicula {
      * @param fechaAdquisicion fecha en la que se compro y podemos ponerla null si se desconoce
      */
     public Pelicula(int id, String titulo, String director, String genero, int anio, int duracion, String sinopsis, String formato, String estado, LocalDate fechaAdquisicion) {
+        this(titulo, director, genero, anio, duracion, sinopsis, formato, estado, fechaAdquisicion);
         this.id = id;
-        this.titulo = titulo;
-        this.director = director;
-        this.genero = genero;
-        this.anio = anio;
-        this.duracion = duracion;
-        this.sinopsis = sinopsis;
-        this.formato = formato;
-        this.estado = estado;
-        this.fechaAdquisicion = fechaAdquisicion;
     }
 
     public int getId() {
