@@ -1,6 +1,7 @@
 package es.salva;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,10 +11,14 @@ public class Main {
                 "Blu-ray", "Edición coleccionista",
                 LocalDate.of(2026, 10, 30));
         System.out.println(padrino.getTitulo());
-        System.out.println("Duración: " + padrino.getDuracion() +" min.");
+        System.out.println("Duración: " + padrino.getDuracion() + " min.");
 
         XmlPeliculas xmlPeliculas = new XmlPeliculas();
-        xmlPeliculas.leerPeliculas("peliculas.xml");
+        List<Pelicula> peliculas = xmlPeliculas.leerPeliculas("peliculas.xml");
+        for (int i = 0; i < peliculas.size(); i++) {
+            Pelicula pelicula = peliculas.get(i);
+            System.out.println(pelicula.getTitulo() + ", " + pelicula.getDuracion() + " min.");
+        }
     }
 
 

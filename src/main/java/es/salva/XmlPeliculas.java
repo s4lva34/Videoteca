@@ -10,38 +10,41 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class XmlPeliculas {
-    public void leerPeliculas(String ruta){
+    public List<Pelicula> leerPeliculas(String ruta) {
+        List<Pelicula> peliculas = new ArrayList<>();
         try {
             Document doc = DocumentBuilderFactory.newInstance()
                     .newDocumentBuilder()
                     .parse(new File(ruta));
-            NodeList peliculas = doc.getElementsByTagName("pelicula");
-            System.out.println(peliculas.getLength());
-            for (int i = 0; i < peliculas.getLength() ; i++) {
-                Element pelicula = (Element) peliculas.item(i);
-                String titulo = pelicula.getElementsByTagName("titulo").item(0).getTextContent();
-                String director = pelicula.getElementsByTagName("director").item(0).getTextContent();
-                String genero = pelicula.getElementsByTagName("genero").item(0).getTextContent();
-                String anioTexto = pelicula.getElementsByTagName("anio").item(0).getTextContent();
-                String duracionTexto = pelicula.getElementsByTagName("duracion").item(0).getTextContent();
-                String sinopsis = pelicula.getElementsByTagName("sinopsis").item(0).getTextContent();
-                String formato = pelicula.getElementsByTagName("formato").item(0).getTextContent();
-                String estado = pelicula.getElementsByTagName("estado").item(0).getTextContent();
-                String fechaAdquisicionTexto = pelicula.getElementsByTagName("fechaAdquisicion").item(0).getTextContent();
+            NodeList nodosPelicula = doc.getElementsByTagName("pelicula");
+            for (int i = 0; i < nodosPelicula.getLength(); i++) {
+                Element nodoPelicula = (Element) nodosPelicula.item(i);
+                String titulo = nodoPelicula.getElementsByTagName("titulo").item(0).getTextContent();
+                String director = nodoPelicula.getElementsByTagName("director").item(0).getTextContent();
+                String genero = nodoPelicula.getElementsByTagName("genero").item(0).getTextContent();
+                String anioTexto = nodoPelicula.getElementsByTagName("anio").item(0).getTextContent();
+                String duracionTexto = nodoPelicula.getElementsByTagName("duracion").item(0).getTextContent();
+                String sinopsis = nodoPelicula.getElementsByTagName("sinopsis").item(0).getTextContent();
+                String formato = nodoPelicula.getElementsByTagName("formato").item(0).getTextContent();
+                String estado = nodoPelicula.getElementsByTagName("estado").item(0).getTextContent();
+                String fechaAdquisicionTexto = nodoPelicula.getElementsByTagName("fechaAdquisicion").item(0).getTextContent();
                 int anio = Integer.parseInt(anioTexto);
                 int duracion = Integer.parseInt(duracionTexto);
                 LocalDate fechaAdquisicion = LocalDate.parse(fechaAdquisicionTexto);
-                Pelicula peliculaLeida = new Pelicula(titulo, director, genero,
+                Pelicula pelicula = new Pelicula(titulo, director, genero,
                         anio, duracion, sinopsis,
                         formato, estado, fechaAdquisicion);
-                System.out.println(peliculaLeida.getTitulo() + ", " + peliculaLeida.getDuracion() + " min.");
+                peliculas.add(pelicula);
 
             }
 
         } catch (ParserConfigurationException | SAXException | IOException e) {
             System.out.println("No se ha podido leer el XML: " + e.getMessage());
         }
+        return peliculas;
     }
 }
