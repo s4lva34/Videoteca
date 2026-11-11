@@ -1,5 +1,7 @@
 package es.salva;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,6 +21,15 @@ public class Main {
             Pelicula pelicula = peliculas.get(i);
             System.out.println(pelicula.getTitulo() + ", " + pelicula.getDuracion() + " min.");
         }
+        ConexionBD conexionBD = new ConexionBD();
+        try {
+            Connection conexion = conexionBD.abrir();
+            System.out.println("Conexión realizada correctamente");
+        } catch (SQLException e) {
+            System.out.println("Error al conectar: " + e.getMessage());
+        }
+
+
     }
 
 
