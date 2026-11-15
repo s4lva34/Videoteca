@@ -1,9 +1,9 @@
 package es.salva;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Guarda y lee las películas de la tabla peliculas.
@@ -55,5 +55,35 @@ public class PeliculaDao {
             sentencia.setObject(9, pelicula.getFechaAdquisicion());
             sentencia.executeUpdate();
         }
+    }
+
+    /**
+     * Lee todas las películas de la tabla peliculas.
+     *
+     * @param conexion conexión abierta con la base de datos
+     * @return lista con todas las películas de la tabla
+     * @throws SQLException si falla la consulta
+     */
+    public List<Pelicula> seleccionarPeliculas(Connection conexion) throws SQLException {
+        List<Pelicula> peliculas = new ArrayList<>();
+        String sql = "SELECT * FROM peliculas";
+        try (Statement sentencia = conexion.createStatement();
+             ResultSet resultado = sentencia.executeQuery(sql)) {
+            while (resultado.next()) {
+                Pelicula pelicula = new Pelicula(
+                        resultado.getInt("id"),
+                        resultado.getString("titulo"),
+                        resultado.getString("director"),
+                        resultado.getString("genero"),
+                        resultado.getInt("anio"),
+                        resultado.getInt("duracion"),
+                        resultado.getString("sinopsis"),
+                        resultado.getString("formato"),
+                        resultado.getString("estado"),
+                        resultado.getObject("fecha_adquisicion", LocalDate.class));
+                peliculas.add(pelicula);
+            }
+        }
+        return peliculas;
     }
 }

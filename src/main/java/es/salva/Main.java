@@ -68,6 +68,8 @@ public class Main {
             System.out.println("Peliculas de prueba insertadas: " + peliculasPrueba.size());
             int insertadas = importarXml(conexion, "peliculas.xml");
             System.out.println("Películas insertadas desde el XML: " + insertadas);
+            int exportadas = exportarXml(conexion, "peliculas_exportadas.xml");
+            System.out.println("Películas grabadas en peliculas_exportadas.xml: " + exportadas);
 
         } catch (SQLException e) {
             System.out.println("Error al conectar: " + e.getMessage());
@@ -80,7 +82,7 @@ public class Main {
      * Método A: lee las películas de un XML y las inserta en la tabla peliculas.
      *
      * @param conexion conexión abierta con la base de datos
-     * @param ruta ruta del archivo XML que se va a leer
+     * @param ruta     ruta del archivo XML que se va a leer
      * @return número de películas insertadas
      * @throws SQLException si falla alguna inserción
      */
@@ -96,5 +98,19 @@ public class Main {
         return insertadas;
     }
 
+    /**
+     * Método B: vuelca todas las películas de la tabla peliculas a un archivo XML.
+     *
+     * @param conexion conexión abierta con la base de datos
+     * @param ruta     ruta del archivo XML que se va a crear
+     * @return número de películas grabadas en el archivo
+     * @throws SQLException si falla la lectura de la tabla
+     */
+    public static int exportarXml(Connection conexion, String ruta) throws SQLException {
+        PeliculaDao peliculaDao = new PeliculaDao();
+        XmlPeliculas xmlPeliculas = new XmlPeliculas();
+        List<Pelicula> peliculas = peliculaDao.seleccionarPeliculas(conexion);
+        return xmlPeliculas.escribirPeliculas(peliculas, ruta);
+    }
 
 }
