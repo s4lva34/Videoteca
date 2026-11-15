@@ -2,7 +2,6 @@ package es.salva;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -17,13 +16,6 @@ public class Main {
      * @param args no se usan
      */
     public static void main(String[] args) {
-        Pelicula padrino = new Pelicula("El Padrino", "Francis Ford Coppola", "Drama",
-                1972, 175,
-                "El patriarca de una familia mafiosa transfiere el control de su imperio a su hijo.",
-                "Blu-ray", "Edición coleccionista",
-                LocalDate.of(2026, 10, 30));
-        System.out.println(padrino.getTitulo());
-        System.out.println("Duración: " + padrino.getDuracion() + " min.");
 
         XmlPeliculas xmlPeliculas = new XmlPeliculas();
         List<Pelicula> peliculasXml = List.of(
@@ -38,14 +30,9 @@ public class Main {
                         "4K", "Nuevo", null));
         int grabadas = xmlPeliculas.escribirPeliculas(peliculasXml, "peliculas.xml");
         System.out.println("Películas grabadas en el XML: " + grabadas);
-        List<Pelicula> peliculas = xmlPeliculas.leerPeliculas("peliculas.xml");
-        for (int i = 0; i < peliculas.size(); i++) {
-            Pelicula pelicula = peliculas.get(i);
-            System.out.println(pelicula.getTitulo() + ", " + pelicula.getDuracion() + " min.");
-        }
+
         ConexionBD conexionBD = new ConexionBD();
-        try {
-            Connection conexion = conexionBD.abrir();
+        try (Connection conexion = conexionBD.abrir()) {
             System.out.println("Conexión realizada correctamente");
             PeliculaDao peliculaDao = new PeliculaDao();
             peliculaDao.crearTabla(conexion);
@@ -72,7 +59,7 @@ public class Main {
             System.out.println("Películas grabadas en peliculas_exportadas.xml: " + exportadas);
 
         } catch (SQLException e) {
-            System.out.println("Error al conectar: " + e.getMessage());
+            System.out.println("Error al conectar con la base de datos: " + e.getMessage());
         }
 
 
