@@ -5,7 +5,17 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Programa de la videoteca: crea la tabla, inserta películas de prueba,
+ * genera el XML e importa y exporta películas entre el XML y la base de datos.
+ */
 public class Main {
+
+    /**
+     * Prueba todos los pasos de la videoteca en orden.
+     *
+     * @param args no se usan
+     */
     public static void main(String[] args) {
         Pelicula padrino = new Pelicula("El Padrino", "Francis Ford Coppola", "Drama",
                 1972, 175,
@@ -65,6 +75,7 @@ public class Main {
 
 
     }
+
     /**
      * Método A: lee las películas de un XML y las inserta en la tabla peliculas.
      *
@@ -78,11 +89,11 @@ public class Main {
         PeliculaDao peliculaDao = new PeliculaDao();
         List<Pelicula> peliculas = xmlPeliculas.leerPeliculas(ruta);
         int insertadas = 0;
-        for (int i= 0; i < peliculas.size(); i++) {
+        for (int i = 0; i < peliculas.size(); i++) {
             peliculaDao.insertarPelicula(conexion, peliculas.get(i));
             insertadas++;
         }
-        return  insertadas;
+        return insertadas;
     }
 
 

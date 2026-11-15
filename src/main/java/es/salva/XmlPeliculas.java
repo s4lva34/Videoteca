@@ -18,7 +18,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Lee y escribe archivos XML de películas usando DOM.
+ */
 public class XmlPeliculas {
+    /**
+     * Lee un archivo XML y convierte cada etiqueta pelicula en un objeto Pelicula.
+     *
+     * @param ruta ruta del archivo XML que se va a leer
+     * @return lista con las películas leídas.
+     */
     public List<Pelicula> leerPeliculas(String ruta) {
         List<Pelicula> peliculas = new ArrayList<>();
         try {
@@ -51,7 +60,13 @@ public class XmlPeliculas {
         return peliculas;
 
     }
-
+    /**
+     * Escribe una lista de películas en un archivo XML con la estructura del enunciado.
+     *
+     * @param peliculas películas que se van a guardar
+     * @param ruta ruta del archivo XML que se va a crear
+     * @return número de películas grabadas en el archivo.
+     */
     public int escribirPeliculas(List<Pelicula> peliculas, String ruta) {
         int grabadas = 0;
         try {
@@ -80,7 +95,14 @@ public class XmlPeliculas {
         }
         return grabadas;
     }
-
+    /**
+     * Crea una etiqueta con su texto y la mete dentro de otra.
+     *
+     * @param doc documento XML donde se crea la etiqueta
+     * @param padre etiqueta dentro de la que va la nueva
+     * @param nombre nombre de la etiqueta, por ejemplo titulo
+     * @param valor texto que va dentro de la etiqueta
+     */
     private void agregarEtiqueta(Document doc, Element padre, String nombre, String valor) {
         Element etiqueta = doc.createElement(nombre);
         etiqueta.setTextContent(valor);

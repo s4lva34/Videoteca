@@ -5,8 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Guarda y lee las películas de la tabla peliculas.
+ */
 public class PeliculaDao {
+    /**
+     * Crea la tabla peliculas en la base de datos.
+     *
+     * @param conexion conexión abierta con la base de datos
+     * @throws SQLException si no se puede crear la tabla.
+     */
     public void crearTabla(Connection conexion) throws SQLException {
+
         String sql = "CREATE TABLE peliculas ("
                 + "id SERIAL PRIMARY KEY, "
                 + "titulo VARCHAR(200) NOT NULL, "
@@ -23,6 +33,13 @@ public class PeliculaDao {
         }
     }
 
+    /**
+     * Inserta una película en la tabla peliculas. El id lo pone PostgreSQL.
+     *
+     * @param conexion conexión abierta con la base de datos
+     * @param pelicula película que se va a guardar
+     * @throws SQLException si falla la inserción
+     */
     public void insertarPelicula(Connection conexion, Pelicula pelicula) throws SQLException {
         String sql = "INSERT INTO peliculas (titulo, director, genero, anio, duracion, sinopsis, "
                 + "formato, estado, fecha_adquisicion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";

@@ -2,6 +2,9 @@ package es.salva;
 
 import java.time.LocalDate;
 
+/**
+ * Película de la videoteca, con los mismos datos que una fila de la tabla peliculas.
+ */
 public class Pelicula {
     private int id;
     private String titulo;
