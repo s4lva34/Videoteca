@@ -56,12 +56,33 @@ public class Main {
                 peliculaDao.insertarPelicula(conexion, peliculasPrueba.get(i));
             }
             System.out.println("Peliculas de prueba insertadas: " + peliculasPrueba.size());
+            int insertadas = importarXml(conexion, "peliculas.xml");
+            System.out.println("Películas insertadas desde el XML: " + insertadas);
 
         } catch (SQLException e) {
             System.out.println("Error al conectar: " + e.getMessage());
         }
 
 
+    }
+    /**
+     * Método A: lee las películas de un XML y las inserta en la tabla peliculas.
+     *
+     * @param conexion conexión abierta con la base de datos
+     * @param ruta ruta del archivo XML que se va a leer
+     * @return número de películas insertadas
+     * @throws SQLException si falla alguna inserción
+     */
+    public static int importarXml(Connection conexion, String ruta) throws SQLException {
+        XmlPeliculas xmlPeliculas = new XmlPeliculas();
+        PeliculaDao peliculaDao = new PeliculaDao();
+        List<Pelicula> peliculas = xmlPeliculas.leerPeliculas(ruta);
+        int insertadas = 0;
+        for (int i= 0; i < peliculas.size(); i++) {
+            peliculaDao.insertarPelicula(conexion, peliculas.get(i));
+            insertadas++;
+        }
+        return  insertadas;
     }
 
 
