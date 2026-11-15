@@ -25,6 +25,9 @@ public class Main {
         try {
             Connection conexion = conexionBD.abrir();
             System.out.println("Conexión realizada correctamente");
+            PeliculaDao peliculaDao = new PeliculaDao();
+            peliculaDao.crearTabla(conexion);
+            System.out.println("Tabla peliculas creada");
         } catch (SQLException e) {
             System.out.println("Error al conectar: " + e.getMessage());
         }
