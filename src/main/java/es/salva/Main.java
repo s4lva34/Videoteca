@@ -16,6 +16,18 @@ public class Main {
         System.out.println("Duración: " + padrino.getDuracion() + " min.");
 
         XmlPeliculas xmlPeliculas = new XmlPeliculas();
+        List<Pelicula> peliculasXml = List.of(
+                new Pelicula("El laberinto del fauno", "Guillermo del Toro", "Fantasía", 2006, 118,
+                        "En la España de 1944, una niña escapa de la crueldad de su padrastro a un mundo mágico guardado por un fauno.",
+                        "Blu-ray", "Nuevo", null),
+                new Pelicula("Amélie", "Jean-Pierre Jeunet", "Comedia", 2001, 122,
+                        "Una camarera tímida de Montmartre decide cambiar en secreto la vida de quienes la rodean.",
+                        "DVD", "Usado", null),
+                new Pelicula("Parásitos", "Bong Joon-ho", "Thriller", 2019, 132,
+                        "Una familia pobre se infiltra poco a poco en la casa de una familia rica, hasta que todo se descontrola.",
+                        "4K", "Nuevo", null));
+        int grabadas = xmlPeliculas.escribirPeliculas(peliculasXml, "peliculas.xml");
+        System.out.println("Películas grabadas en el XML: " + grabadas);
         List<Pelicula> peliculas = xmlPeliculas.leerPeliculas("peliculas.xml");
         for (int i = 0; i < peliculas.size(); i++) {
             Pelicula pelicula = peliculas.get(i);

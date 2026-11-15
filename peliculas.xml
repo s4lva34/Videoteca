@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<peliculas>
+    <pelicula>
+        <titulo>El laberinto del fauno</titulo>
+        <director>Guillermo del Toro</director>
+        <genero>Fantasía</genero>
+        <anio>2006</anio>
+        <duracion>118</duracion>
+        <formato>Blu-ray</formato>
+        <estado>Nuevo</estado>
+        <sinopsis>En la España de 1944, una niña escapa de la crueldad de su padrastro a un mundo mágico guardado por un fauno.</sinopsis>
+    </pelicula>
+    <pelicula>
+        <titulo>Amélie</titulo>
+        <director>Jean-Pierre Jeunet</director>
+        <genero>Comedia</genero>
+        <anio>2001</anio>
+        <duracion>122</duracion>
+        <formato>DVD</formato>
+        <estado>Usado</estado>
+        <sinopsis>Una camarera tímida de Montmartre decide cambiar en secreto la vida de quienes la rodean.</sinopsis>
+    </pelicula>
+    <pelicula>
+        <titulo>Parásitos</titulo>
+        <director>Bong Joon-ho</director>
+        <genero>Thriller</genero>
+        <anio>2019</anio>
+        <duracion>132</duracion>
+        <formato>4K</formato>
+        <estado>Nuevo</estado>
+        <sinopsis>Una familia pobre se infiltra poco a poco en la casa de una familia rica, hasta que todo se descontrola.</sinopsis>
+    </pelicula>
+</peliculas>
